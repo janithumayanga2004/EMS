@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="SignUpAnchorpane" prefHeight="694.0" prefWidth="1371.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.home.estate.controller.SignUpController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="694.0" layoutX="-1.0" stroke="WHITE" strokeType="INSIDE" width="1371.0" />
+      <ImageView fitHeight="694.0" fitWidth="493.0" layoutX="-1.0" layoutY="-1.0" pickOnBounds="true">
+         <image>
+            <Image url="@../Image/Leonardo_Phoenix_Background_Image_DescriptionCreate_a_plain_ba_3.jpg" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="120.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Watawala" AnchorPane.leftAnchor="152.0" AnchorPane.topAnchor="73.15">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Text>
+      <Line endX="181.5" layoutX="186.5" layoutY="120.0" startX="-100.0" stroke="WHITE" AnchorPane.leftAnchor="86.0" />
+      <Text fill="WHITE" layoutX="44.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estate Management System" AnchorPane.leftAnchor="44.0">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Text>
+      <Text layoutX="856.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up">
+         <font>
+            <Font name="System Bold" size="35.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblFirstName" layoutX="513.0" layoutY="82.0" text="First Name">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblLastName" layoutX="513.0" layoutY="132.0" text="Last Name">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblEmail" layoutX="513.0" layoutY="183.0" text="Email">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblUserName" layoutX="513.0" layoutY="234.0" text="UserName">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblPassword" layoutX="513.0" layoutY="390.0" text="Password">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblAddress" layoutX="513.0" layoutY="283.0" text="Address">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblDirtOfBirth" layoutX="513.0" layoutY="341.0" text="Dirth of Birth">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtPassword" layoutX="641.0" layoutY="378.0" prefHeight="24.0" prefWidth="525.0" />
+      <JFXTextField fx:id="txtAddress" layoutX="640.0" layoutY="269.0" prefHeight="24.0" prefWidth="525.0" />
+      <JFXTextField fx:id="txtLastName" layoutX="640.0" layoutY="123.0" prefHeight="24.0" prefWidth="525.0" />
+      <JFXTextField fx:id="txtUserName" layoutX="639.0" layoutY="220.0" prefHeight="24.0" prefWidth="525.0" />
+      <JFXTextField fx:id="txtEmail" layoutX="639.0" layoutY="166.0" prefHeight="24.0" prefWidth="525.0" />
+      <JFXTextField fx:id="txtFirstName" layoutX="641.0" layoutY="71.0" prefHeight="24.0" prefWidth="525.0" />
+      <JFXTextField fx:id="txtDateOfBirth" layoutX="641.0" layoutY="328.0" prefHeight="24.0" prefWidth="525.0" />
+      <JFXButton layoutX="634.0" layoutY="528.0" onAction="#btnOnActionSignUp" prefHeight="45.0" prefWidth="544.0" style="-fx-background-color: green;" text="Sign Up">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

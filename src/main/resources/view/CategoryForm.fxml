@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="584.0" prefWidth="1191.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.home.estate.controller.CategoryController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="584.0" stroke="BLACK" strokeType="INSIDE" width="1191.0" />
+      <Label layoutX="29.0" layoutY="35.0" text="Category Id">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="29.0" layoutY="96.0" text="Category Name">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="575.0" layoutY="36.0" text="Description">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblCategoryId" layoutX="186.0" layoutY="37.0" prefHeight="16.0" prefWidth="345.0" />
+      <JFXTextField fx:id="txtCategoryName" layoutX="187.0" layoutY="84.0" onMouseClicked="#clearName" prefHeight="24.0" prefWidth="345.0" />
+      <JFXTextField fx:id="txtDescription" layoutX="676.0" layoutY="24.0" onMouseClicked="#clearDesctiption" prefHeight="24.0" prefWidth="345.0" />
+      <JFXButton fx:id="btnSave" layoutX="26.0" layoutY="150.0" onAction="#saveOnAction" style="-fx-background-color: #2ecc71;" text="Save">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="btnDelete" layoutX="112.0" layoutY="150.0" onAction="#DeleteOnAction" style="-fx-background-color: C1BEBB;" text="Delete">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="btnUpdate" layoutX="210.0" layoutY="149.0" onAction="#updateOnAction" style="-fx-background-color: #2ecc71;" text="Update">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="btnReset" layoutX="313.0" layoutY="150.0" onAction="#resetOnAction" style="-fx-background-color: C1BEBB;" text="Reset">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </JFXButton>
+      <TableView fx:id="tblCategory" layoutX="29.0" layoutY="220.0" onMouseClicked="#tblClicked" prefHeight="345.0" prefWidth="1017.0" stylesheets="@../style/table_style.css">
+         <columns>
+            <TableColumn fx:id="colCategoryId" prefWidth="342.0" text="Category Id" />
+            <TableColumn fx:id="colCategoryName" prefWidth="340.0" text="Category Name" />
+            <TableColumn fx:id="colDescription" prefWidth="334.0" text="Description" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>
