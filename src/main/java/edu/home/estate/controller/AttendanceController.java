@@ -54,7 +54,7 @@ public class AttendanceController implements Initializable {
     private TableColumn<AttendanceTM, Date> colAttendanceDate;
 
     @FXML
-    private TableColumn<AttendanceTM, Integer> colAttendanceId;
+    private TableColumn<AttendanceTM, String> colAttendanceId;
 
     @FXML
     private TableColumn<AttendanceTM, Time> colAttendanceTime;
@@ -112,6 +112,9 @@ public class AttendanceController implements Initializable {
         refreshTable();
 
         loadLabourId();
+        String attendanceId = attendanceModel.getNextAttendanceId();
+        lblAttendanceId.setText(attendanceId);
+
 
         cmbLabourId.getSelectionModel().clearSelection();
         txtAttendance.setText("");
@@ -184,7 +187,9 @@ public class AttendanceController implements Initializable {
     }
 
     @FXML
-    void btnSaveOnAction(ActionEvent event) throws ParseException, SQLException {
+    public void btnSaveOnAction(ActionEvent event) throws ParseException, SQLException {
+        // Extract input values from UI components
+        String id = lblAttendanceId.getText();
         String attendance = txtAttendance.getText();
         String date = txtAttendanceDate.getText();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -194,44 +199,52 @@ public class AttendanceController implements Initializable {
         Date dateTimeAttendance = formatterTime.parse(time);
         String labourId = cmbLabourId.getSelectionModel().getSelectedItem();
 
-        AttendanceDto attendanceDto = new AttendanceDto(attendance,dateAttendance,dateTimeAttendance,labourId);
+        Time sqlTime = new Time(dateTimeAttendance.getTime());
 
+
+        AttendanceDto attendanceDto = new AttendanceDto(id, attendance, dateAttendance, sqlTime, labourId);
+
+        AttendanceModel attendanceModel = new AttendanceModel();
         boolean isSaved = attendanceModel.saveAttendance(attendanceDto);
+
 
         if (isSaved) {
             System.out.println("Attendance saved");
             refreshPage();
-
-        }else{
+        } else {
             System.out.println("Attendance not saved");
         }
-
     }
 
+
     @FXML
-    void btnUpDateOnAction(ActionEvent event) throws ParseException, SQLException {
-        int id =  Integer.parseInt(lblAttendanceId.getText());
+    public void btnUpDateOnAction(ActionEvent event) throws ParseException, SQLException {
+        // Extract inputs
+        String id = lblAttendanceId.getText();
         String attendance = txtAttendance.getText();
         String date = txtAttendanceDate.getText();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date dateAttendance = formatter.parse(date);
         String time = txtAttendanceTime.getText();
         SimpleDateFormat formatterTime = new SimpleDateFormat("HH:mm:ss");
-        Date dateTimeAttendances = formatterTime.parse(time);
+        Date timeAttendance = formatterTime.parse(time);
         String labourId = cmbLabourId.getSelectionModel().getSelectedItem();
+        Time sqlTime = new Time(timeAttendance.getTime());
 
-        AttendanceDto attendanceDto = new AttendanceDto(id,attendance,dateAttendance, (Time) dateTimeAttendances, labourId);
 
+        AttendanceDto attendanceDto = new AttendanceDto(id, attendance, dateAttendance, sqlTime, labourId);
+
+
+        AttendanceModel attendanceModel = new AttendanceModel();
         boolean isUpdate = attendanceModel.updateAttendance(attendanceDto);
 
+
         if (isUpdate) {
-            System.out.println("update success");
+            System.out.println("Update success");
             refreshPage();
-
-        }else{
-            System.out.println("update fail");
+        } else {
+            System.out.println("Update failed");
         }
-
     }
 
     @FXML
@@ -242,6 +255,8 @@ public class AttendanceController implements Initializable {
             txtAttendance.setText(selectedAttendanceTM.getAttendance());
             txtAttendanceDate.setText(String.valueOf(selectedAttendanceTM.getDate()));
             txtAttendanceTime.setText(String.valueOf(selectedAttendanceTM.getTime()));
+            cmbLabourId.getSelectionModel().clearSelection();
+            cmbLabourId.getSelectionModel().select(selectedAttendanceTM.getLabour_id().toString());
 
             btnSave.setDisable(true);
             btnDelete.setDisable(false);

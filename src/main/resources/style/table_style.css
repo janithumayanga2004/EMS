@@ -1,19 +1,22 @@
-.table-view{
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: gray;
+    -fx-border-width: 1px;
+    -fx-border-radius: 2px;
+}
+
+.table-view:focused {
     -fx-background-color: transparent;
 }
 
-.table-view:focused{
-    -fx-background-color: transparent;
-}
 
-/* Spaltenköpfe
-    Struktur column-header-background -> column-header */
-
-.table-view .column-header-background{
+.table-view .column-header-background {
     -fx-background-color: linear-gradient(#02472e 0%, #02472e 100%);
+    /*-fx-border-color: #02472e;*/
+    /*-fx-border-width: 0 0 2px 0;*/
 }
 
-.table-view .column-header-background .label{
+.table-view .column-header-background .label {
     -fx-background-color: #02472e;
     -fx-text-fill: #f4f2f2;
 }
@@ -22,12 +25,16 @@
     -fx-background-color: #02472e;
 }
 
-.table-view .table-cell{
-    -fx-text-fill: #f4f2f2;
+
+.table-view .table-cell {
+    -fx-text-fill: black;
+    /*-fx-border-color: #02472e;*/
+    /*-fx-border-width: 0 1px 1px 0;*/
 }
 
-.table-row-cell{
-    -fx-background-color: -fx-table-cell-border-color, #02472e;
+.table-row-cell {
+    -fx-background-color: -fx-table-cell-border-color, #fff;
     -fx-background-insets: 0, 0 0 1 0;
-    -fx-padding: 0.0em; /* 0 */
+    -fx-padding: 0.0em;
+    -fx-text-fill: black;
 }

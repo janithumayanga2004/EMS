@@ -53,8 +53,7 @@ public class SignInController {
             txtEmail.setStyle(txtEmail.getStyle() + ";-fx-border-color: red;");
         }
 
-    //!authenticatedUsers.isEmpty()
-        if(true) {
+        if(!authenticatedUsers.isEmpty()) {
             System.out.println("true");
            try{
                loadDashboard();
@@ -98,9 +97,15 @@ public class SignInController {
 
     }
 
+    @FXML
+    void btnOnActionForgot(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/ForgetPasswordForm.fxml"));
+        Parent load = fxmlLoader.load();
 
+        SignInAnchorPane.getChildren().clear();
+        SignInAnchorPane.getChildren().add(load);
 
-
+    }
 
 
 }

@@ -96,5 +96,13 @@ public class CategoryModel {
         return "C001";
     }
 
+    public int getCategoryCount() throws SQLException {
+        int count = 0;
+        ResultSet rst = CrudUtil.execute("SELECT COUNT(id) AS count FROM Category");
+        if (rst.next()) {
+            count = rst.getInt("count"); // Get the count from the ResultSet
+        }
+        return count;
+    }
 
 }

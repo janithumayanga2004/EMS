@@ -88,5 +88,13 @@ public class DivisionModel {
         return null;
     }
 
+    public int getDivisionCount() throws SQLException {
+        int count = 0;
+        ResultSet rst = CrudUtil.execute("SELECT COUNT(id) AS count FROM Division");
+        if (rst.next()) {
+            count = rst.getInt("count"); // Get the count from the ResultSet
+        }
+        return count;
+    }
 
 }

@@ -12,70 +12,70 @@
 
 <AnchorPane prefHeight="584.0" prefWidth="1191.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.home.estate.controller.AttendanceController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="584.0" stroke="BLACK" strokeType="INSIDE" width="1191.0" />
-      <Label layoutX="24.0" layoutY="30.0" text="Attendance Id">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="584.0" layoutX="1.0" stroke="BLACK" strokeType="INSIDE" width="1191.0" />
+      <Label layoutX="61.0" layoutY="30.0" text="Attendance Id">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="24.0" layoutY="69.0" text="Attendance ">
+      <Label layoutX="61.0" layoutY="69.0" text="Attendance ">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="524.0" layoutY="30.0" text="Attendance Date">
+      <Label layoutX="589.0" layoutY="30.0" text="Attendance Date">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="523.0" layoutY="66.0" text="Attendance Time">
+      <Label layoutX="589.0" layoutY="66.0" text="Attendance Time">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
       <Label fx:id="lblAttendanceId" layoutX="150.0" layoutY="32.0" prefHeight="16.0" prefWidth="345.0" />
-      <JFXTextField fx:id="txtAttendance" layoutX="152.0" layoutY="57.0" prefHeight="24.0" prefWidth="345.0" />
-      <JFXTextField fx:id="txtAttendanceDate" layoutX="671.0" layoutY="16.0" prefHeight="24.0" prefWidth="345.0" />
-      <JFXTextField fx:id="txtAttendanceTime" layoutX="668.0" layoutY="55.0" prefHeight="24.0" prefWidth="345.0" />
-      <Label layoutX="26.0" layoutY="110.0" text="Labour Id">
+      <JFXTextField fx:id="txtAttendance" layoutX="187.0" layoutY="57.0" prefHeight="24.0" prefWidth="345.0" />
+      <JFXTextField fx:id="txtAttendanceDate" layoutX="755.0" layoutY="16.0" prefHeight="24.0" prefWidth="345.0" />
+      <JFXTextField fx:id="txtAttendanceTime" layoutX="755.0" layoutY="55.0" prefHeight="24.0" prefWidth="345.0" />
+      <Label layoutX="61.0" layoutY="110.0" text="Labour Id">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <JFXComboBox fx:id="cmbLabourId" layoutX="153.0" layoutY="97.0" onAction="#cmbLabourIdOnAction" prefHeight="24.0" prefWidth="345.0" />
-      <Label layoutX="523.0" layoutY="106.0" text="Labour Name">
+      <JFXComboBox fx:id="cmbLabourId" layoutX="188.0" layoutY="97.0" onAction="#cmbLabourIdOnAction" prefHeight="24.0" prefWidth="345.0" />
+      <Label layoutX="589.0" layoutY="106.0" text="Labour Name">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label fx:id="lblLabourName" layoutX="665.0" layoutY="108.0" prefHeight="16.0" prefWidth="345.0" />
-      <JFXButton fx:id="btnSave" layoutX="33.0" layoutY="150.0" onAction="#btnSaveOnAction" style="-fx-background-color: #2ecc71;" text="Save">
+      <Label fx:id="lblLabourName" layoutX="666.0" layoutY="108.0" prefHeight="16.0" prefWidth="345.0" />
+      <JFXButton fx:id="btnSave" layoutX="61.0" layoutY="150.0" onAction="#btnSaveOnAction" prefWidth="97.0" style="-fx-background-color: #009933;" text="Save">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="btnDelete" layoutX="128.0" layoutY="150.0" onAction="#btnDeleteOnAction" style="-fx-background-color: #c0392b;" text="Delete">
+      <JFXButton fx:id="btnDelete" layoutX="169.0" layoutY="150.0" onAction="#btnDeleteOnAction" prefWidth="97.0" style="-fx-background-color: #ff3333;" text="Delete">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="btnReset" layoutX="341.0" layoutY="150.0" onAction="#btnResetOnAction" style="-fx-background-color: #e74c3c;" text="Reset">
+      <JFXButton fx:id="btnReset" layoutX="386.0" layoutY="150.0" onAction="#btnResetOnAction" prefWidth="97.0" style="-fx-background-color: C1BEBB;" text="Reset">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="btnUpDate" layoutX="229.0" layoutY="150.0" onAction="#btnUpDateOnAction" style="-fx-background-color: #3498db;" text="Update">
+      <JFXButton fx:id="btnUpDate" layoutX="277.0" layoutY="150.0" onAction="#btnUpDateOnAction" prefWidth="97.0" style="-fx-background-color: #2ecc71;" text="Update">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
-      <TableView fx:id="tblAttendance" layoutX="23.0" layoutY="193.0" onMouseClicked="#tblClicked" prefHeight="357.0" prefWidth="1007.0" stylesheets="@../style/table_style.css">
+      <TableView fx:id="tblAttendance" layoutX="61.0" layoutY="193.0" onMouseClicked="#tblClicked" prefHeight="357.0" prefWidth="1048.0" stylesheets="@../style/table_style.css">
          <columns>
             <TableColumn fx:id="colAttendanceId" prefWidth="162.0" text="Attendance Id" />
             <TableColumn fx:id="colAttendance" prefWidth="180.0" text="Attendance " />
             <TableColumn fx:id="colAttendanceDate" prefWidth="200.0" text="Attendance Date" />
             <TableColumn fx:id="colAttendanceTime" prefWidth="263.0" text="Attendance Time" />
-            <TableColumn fx:id="colLabourId" prefWidth="200.0" text="Labour Id" />
+            <TableColumn fx:id="colLabourId" prefWidth="280.0" text="Labour Id" />
          </columns>
       </TableView>
    </children>

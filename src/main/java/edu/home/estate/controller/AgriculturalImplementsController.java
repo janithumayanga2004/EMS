@@ -10,10 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
@@ -23,6 +20,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class AgriculturalImplementsController implements Initializable {
@@ -131,14 +129,23 @@ public class AgriculturalImplementsController implements Initializable {
     void btnDeleteOnAction(ActionEvent event) throws SQLException {
         String id = lblId.getText();
 
-        boolean isDelete = agriculturalImplementsModel.deleteImplements(id);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+                "Are you sure you want to delete this AgriculturalImplements?",
+                ButtonType.YES, ButtonType.NO);
 
-        if(isDelete) {
-            System.out.println("delete");
-            refreshTable();
+        Optional<ButtonType> buttonType = alert.showAndWait();
 
-        }else{
-            System.out.println("not delete");
+        if (buttonType.isPresent() && buttonType.get() == ButtonType.YES) {
+            boolean isDelete = agriculturalImplementsModel.deleteImplements(id);
+
+            if(isDelete) {
+                new Alert(Alert.AlertType.INFORMATION,"AgriculturalImplements deleted...!").show();
+                refreshTable();
+
+            }else{
+                new Alert(Alert.AlertType.ERROR,"Fail to delete AgriculturalImplements...!").show();
+            }
+
         }
 
     }
@@ -160,16 +167,24 @@ public class AgriculturalImplementsController implements Initializable {
 
         AgriculturalImplementsDto agriculturalImplementsDto = new AgriculturalImplementsDto(id, name, quantity, dates);
 
-        boolean isSaved = agriculturalImplementsModel.saveImplements(agriculturalImplementsDto);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+                "Are you sure you want to save this AgriculturalImplements?",
+                ButtonType.YES, ButtonType.NO);
 
+        Optional<ButtonType> buttonType = alert.showAndWait();
 
-        if(isSaved) {
-            System.out.println("save success");
-            refreshPage();
+        if (buttonType.isPresent() && buttonType.get() == ButtonType.YES) {
+            boolean isSaved = agriculturalImplementsModel.saveImplements(agriculturalImplementsDto);
+            if(isSaved) {
+                new Alert(Alert.AlertType.INFORMATION, "AgriculturalImplements Saved...!").show();
+                refreshPage();
 
-        }else{
-            System.out.println("save fail");
+            }else{
+                new Alert(Alert.AlertType.WARNING, "Please ensure all fields are valid.").show();
+            }
+
         }
+
 
     }
 
@@ -184,14 +199,22 @@ public class AgriculturalImplementsController implements Initializable {
 
         AgriculturalImplementsDto agriculturalImplementsDto = new AgriculturalImplementsDto(id, name, quantity, dates);
 
-        boolean isUpdate = agriculturalImplementsModel.updateImplements(agriculturalImplementsDto);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+                "Are you sure you want to update this AgriculturalImplements?",
+                ButtonType.YES, ButtonType.NO);
 
-        if(isUpdate) {
-            System.out.println("update success");
-            refreshPage();
+        Optional<ButtonType> buttonType = alert.showAndWait();
 
-        }else {
-            System.out.println("update fail");
+        if (buttonType.isPresent() && buttonType.get() == ButtonType.YES) {
+            boolean isUpdate = agriculturalImplementsModel.updateImplements(agriculturalImplementsDto);
+            if(isUpdate) {
+                new Alert(Alert.AlertType.INFORMATION, "AgriculturalImplements Update...!").show();
+                refreshPage();
+
+            }else {
+                new Alert(Alert.AlertType.ERROR, "Failed to update AgriculturalImplements...!").show();
+            }
+
         }
 
     }
@@ -210,6 +233,23 @@ public class AgriculturalImplementsController implements Initializable {
             btnUpDate.setDisable(false);
         }
 
+    }
+
+    @FXML
+    void clearDate(MouseEvent event) {
+        txtDate.clear();
+
+    }
+
+    @FXML
+    void clearName(MouseEvent event) {
+        txtName.clear();
+
+    }
+
+    @FXML
+    void clearQuantity(MouseEvent event) {
+        txtQuantity.clear();
 
     }
 

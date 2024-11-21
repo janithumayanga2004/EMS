@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 public class HavestTM {
-    private int id;
+    private String id;
     private String quantity;
     private Date date;
     private String labour_id;

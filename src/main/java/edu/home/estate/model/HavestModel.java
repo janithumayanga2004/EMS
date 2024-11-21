@@ -14,7 +14,7 @@ public class HavestModel {
 
         while (rst.next()) {
             HavestDto havestDto = new HavestDto(
-                    rst.getInt(1),
+                    rst.getString(1),
                     rst.getString(2),
                     rst.getDate(3),
                     rst.getString(4),
@@ -27,7 +27,8 @@ public class HavestModel {
 
     public boolean saveHavest(HavestDto havestDto) throws SQLException {
         return CrudUtil.execute(
-                "insert into Harvest(quantity,date,labour_id,category_id) values (?,?,?,?)",
+                "insert into Harvest(id,quantity,date,labour_id,category_id) values (?,?,?,?,?)",
+                havestDto.getId(),
                 havestDto.getQuantity(),
                 havestDto.getDate(),
                 havestDto.getLabour_id(),
@@ -37,7 +38,7 @@ public class HavestModel {
 
     public boolean updateHavest(HavestDto havestDto) throws SQLException {
         return CrudUtil.execute(
-                "update Harvest quantity=?,date=?,labour_id=?,category_id=? where id =?",
+                "update Harvest set quantity=?,date=?,labour_id=?,category_id=? where id =?",
                 havestDto.getQuantity(),
                 havestDto.getDate(),
                 havestDto.getLabour_id(),
@@ -46,9 +47,22 @@ public class HavestModel {
         );
     }
 
-    public boolean deleteHavest(int id) throws SQLException {
+    public boolean deleteHavest(String id) throws SQLException {
         return CrudUtil.execute(
                 "delete from Harvest where id=?",id
         );
+    }
+
+    public String getNextHarvestId() throws SQLException {
+        ResultSet rst = CrudUtil.execute("select id from Harvest order by id desc limit 1");
+
+        if (rst.next()) {
+            String lastID = rst.getString(1);
+            String subString = lastID.substring(1);
+            int i = Integer.parseInt(subString);
+            int newIdIndex = i+1;
+            return String.format("H%03d", newIdIndex);
+        }
+        return "H001";
     }
 }

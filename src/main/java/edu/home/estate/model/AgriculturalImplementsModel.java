@@ -66,40 +66,15 @@ public class AgriculturalImplementsModel {
                 "delete from AgriculturalImplements where id=?",id
         );
     }
-//    public ArrayList<String> getAllAssets() throws SQLException {
-//        ResultSet rst =CrudUtil.execute("select id from AgriculturalImplements");
-//        ArrayList<String> assetsIds = new ArrayList<>();
-//
-//        while (rst.next()) {
-//            assetsIds.add(rst.getString(1));
-//        }
-//        return assetsIds;
-//    }
 
-//    public AgriculturalImplementsDto findById(String selectedId) throws SQLException {
-//        ResultSet rst = CrudUtil.execute("select * from AgriculturalImplements where id=?", selectedId);
-//
-//        if (rst.next()) {
-//            return new AgriculturalImplementsDto(
-//                    rst.getString(1),
-//                    rst.getString(2),
-//                    rst.getInt(3),
-//                    rst.getDate(4)
-//            );
-//        }
-//        return null;
-//    }
+    public int getAssetsCount() throws SQLException {
+        int count = 0;
+        ResultSet rst = CrudUtil.execute("SELECT COUNT(id) AS count FROM AgriculturalImplements");
+        if (rst.next()) {
+            count = rst.getInt("count"); // Get the count from the ResultSet
+        }
+        return count;
+    }
 
-//    public boolean saveAssetsImplementsList(ArrayList<AgriculturalImplementsDto> agriculturalImplementsDtos) throws SQLException {
-//        for (AgriculturalImplementsDto agriculturalImplementsDto : agriculturalImplementsDtos) {
-//            boolean isSavedAssets = saveImplements(agriculturalImplementsDto);
-//            if (!isSavedAssets) {
-//                // If saving any asset fails, return false immediately
-//                return false;
-//            }
-//        }
-//        // If all assets are saved successfully, return true
-//        return true;
-//    }
 
 }

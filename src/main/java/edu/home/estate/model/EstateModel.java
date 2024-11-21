@@ -90,5 +90,13 @@ public class EstateModel {
 
     }
 
+    public int getEstateCount() throws SQLException {
+        int count = 0;
+        ResultSet rst = CrudUtil.execute("SELECT COUNT(id) AS count FROM Estate");
+        if (rst.next()) {
+            count = rst.getInt("count"); // Get the count from the ResultSet
+        }
+        return count;
+    }
 
 }

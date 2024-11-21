@@ -13,10 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
@@ -26,6 +23,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class LabourController implements Initializable {
@@ -112,10 +110,7 @@ public class LabourController implements Initializable {
         loadDivisionId();
 
         cmbDivisionId.getSelectionModel().clearSelection();
-        txtLabourName.setText("");
-        txtLabourAddress.setText("");
-        txtDob.setText("");
-        lblDivisionName.setText("");
+
 
         labourTMS.clear();
 
@@ -160,17 +155,45 @@ public class LabourController implements Initializable {
 
         String divisionId = cmbDivisionId.getSelectionModel().getSelectedItem();
 
-
         LabourDto labourDto = new LabourDto(id, name, address, dateOfBirth, divisionId);
 
-        boolean isSaved = labourModel.saveLabour(labourDto);
+        String namePattern =  namePattern = "^[A-Za-z ]+$";
+        String addressPattern = addressPattern = "^[A-Za-z ]+$";
 
-        if (isSaved) {
-            System.out.println("Labour saved");
-            refreshPage();
+        boolean isValide = name.matches(namePattern) ;
+        boolean isValide2 = address.matches(addressPattern);
 
-        }else{
-            System.out.println("Labour not saved");
+        txtLabourName.setStyle(txtLabourAddress.getStyle() + ";-fx-border-color: #7367F0;");
+        txtLabourAddress.setStyle(txtLabourAddress.getStyle() + ";-fx-border-color: #7367F0;");
+
+        if(!isValide) {
+            txtLabourName.setStyle(txtLabourAddress.getStyle() + ";-fx-border-color: red;");
+
+        }
+
+        if(!isValide2) {
+            txtLabourAddress.setStyle(txtLabourAddress.getStyle() + ";-fx-border-color: red;");
+        }
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+                "Are you sure you want to save this Labour?",
+                ButtonType.YES, ButtonType.NO);
+
+        Optional<ButtonType> buttonType = alert.showAndWait();
+
+        if (buttonType.isPresent() && buttonType.get() == ButtonType.YES) {
+            if (isValide && isValide2) {
+                boolean isSaved = labourModel.saveLabour(labourDto);
+                if (isSaved) {
+                    refreshPage();
+                    //new Alert(Alert.AlertType.INFORMATION, "Estate Saved...!").show();
+                } else {
+
+                    new Alert(Alert.AlertType.ERROR, "Failed to save Labour...!").show();
+                }
+            } else {
+                new Alert(Alert.AlertType.WARNING, "Please ensure all fields are valid.").show();
+            }
         }
 
     }
@@ -192,14 +215,23 @@ public class LabourController implements Initializable {
     void deleteOnAction(ActionEvent event) throws SQLException {
         String labourId = lblLabourId.getText();
 
-        boolean isDelete = labourModel.deleteLabour(labourId);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+                "Are you sure you want to delete this Labour?",
+                ButtonType.YES, ButtonType.NO);
 
-        if (isDelete) {
-            System.out.println("Labour deleted");
-            refreshPage();
+        Optional<ButtonType> buttonType = alert.showAndWait();
 
-        }else{
-            System.out.println("Labour not deleted");
+        if (buttonType.isPresent() && buttonType.get() == ButtonType.YES) {
+            boolean isDelete = labourModel.deleteLabour(labourId);
+
+            if(isDelete) {
+                new Alert(Alert.AlertType.INFORMATION,"Labour deleted...!").show();
+                refreshPage();
+
+            }else{
+                new Alert(Alert.AlertType.ERROR,"Fail to delete Labour...!").show();
+            }
+
         }
 
     }
@@ -240,15 +272,62 @@ public class LabourController implements Initializable {
 
         LabourDto labourDto = new LabourDto(id, name, address, dateOfBirth, divisionId);
 
-        boolean isUpdate = labourModel.updateLabour(labourDto);
+        String namePattern =  namePattern = "^[A-Za-z ]+$";
+        String addressPattern = addressPattern = "^[A-Za-z ]+$";
 
-        if (isUpdate) {
-            System.out.println("Labour updated");
-            refreshPage();
+        boolean isValide = name.matches(namePattern) ;
+        boolean isValide2 = address.matches(addressPattern);
 
-        }else{
-            System.out.println("Labour not updated");
+        txtLabourName.setStyle(txtLabourAddress.getStyle() + ";-fx-border-color: #7367F0;");
+        txtLabourAddress.setStyle(txtLabourAddress.getStyle() + ";-fx-border-color: #7367F0;");
+
+        if(!isValide) {
+            txtLabourName.setStyle(txtLabourAddress.getStyle() + ";-fx-border-color: red;");
+
         }
+
+        if(!isValide2) {
+            txtLabourAddress.setStyle(txtLabourAddress.getStyle() + ";-fx-border-color: red;");
+        }
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+                "Are you sure you want to update this Labour?",
+                ButtonType.YES, ButtonType.NO);
+
+        Optional<ButtonType> buttonType = alert.showAndWait();
+
+        if (buttonType.isPresent() && buttonType.get() == ButtonType.YES) {
+            if (isValide && isValide2) {
+                boolean isUpdate = labourModel.updateLabour(labourDto);
+                if (isUpdate) {
+                    refreshPage();
+                    //new Alert(Alert.AlertType.INFORMATION, "Estate Saved...!").show();
+                } else {
+
+                    new Alert(Alert.AlertType.ERROR, "Failed to update Labour...!").show();
+                }
+            } else {
+                new Alert(Alert.AlertType.WARNING, "Please ensure all fields are valid.").show();
+            }
+        }
+
+    }
+
+    @FXML
+    void clearAddress(MouseEvent event) {
+        txtLabourAddress.clear();
+
+    }
+
+    @FXML
+    void clearDob(MouseEvent event) {
+        txtDob.clear();
+
+    }
+
+    @FXML
+    void clearName(MouseEvent event) {
+        txtLabourName.clear();
 
     }
 

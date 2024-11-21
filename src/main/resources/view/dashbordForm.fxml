@@ -1,14 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="view.DashbordForm"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="584.0" prefWidth="1191.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.home.estate.controller.MainBoardController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="584.0" layoutX="-2.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" width="1197.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#004d1a" height="200.0" layoutX="51.0" layoutY="41.0" stroke="#004d1a" strokeType="INSIDE" style="-fx-stroke: #004d1a;" width="200.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#004d1a" height="200.0" layoutX="51.0" layoutY="317.0" stroke="#004d1a" strokeType="INSIDE" width="200.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#004d1a" height="200.0" layoutX="497.0" layoutY="41.0" stroke="#004d1a" strokeType="INSIDE" width="200.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#004d1a" height="200.0" layoutX="498.0" layoutY="317.0" stroke="#004d1a" strokeType="INSIDE" width="200.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#004d1a" height="200.0" layoutX="927.0" layoutY="41.0" stroke="#004d1a" strokeType="INSIDE" width="200.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#004d1a" height="200.0" layoutX="927.0" layoutY="317.0" stroke="#004d1a" strokeType="INSIDE" width="200.0" />
+      <Label fx:id="assets_count" layoutX="553.0" layoutY="395.0" text="10" textFill="#f8f8f8">
+         <font>
+            <Font name="System Bold" size="53.0" />
+         </font>
+      </Label>
+      <Label layoutX="81.0" layoutY="53.0" prefHeight="48.0" prefWidth="180.0" text="Estate Count" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="518.0" layoutY="53.0" prefHeight="48.0" prefWidth="180.0" text="Division Count" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="947.0" layoutY="53.0" prefHeight="48.0" prefWidth="180.0" text="Category Count" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="78.0" layoutY="328.0" prefHeight="48.0" prefWidth="180.0" text="Labour Count" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="528.0" layoutY="329.0" prefHeight="48.0" prefWidth="180.0" text="Assets Count" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="941.0" layoutY="328.0" prefHeight="48.0" prefWidth="180.0" text="Daily Attendance" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="daily_attendace" layoutX="984.0" layoutY="389.0" text="10" textFill="#f8f8f8">
+         <font>
+            <Font name="System Bold" size="53.0" />
+         </font>
+      </Label>
+      <Label fx:id="category_count" layoutX="984.0" layoutY="120.0" text="10" textFill="#f8f8f8">
+         <font>
+            <Font name="System Bold" size="53.0" />
+         </font>
+      </Label>
+      <Label fx:id="division_count" layoutX="551.0" layoutY="109.0" text="10" textFill="#f8f8f8">
+         <font>
+            <Font name="System Bold" size="53.0" />
+         </font>
+      </Label>
+      <Label fx:id="labour_count" layoutX="98.0" layoutY="393.0" text="10" textFill="#f8f8f8">
+         <font>
+            <Font name="System Bold" size="53.0" />
+         </font>
+      </Label>
+      <Label fx:id="estate_count" layoutX="100.0" layoutY="112.0" text="10" textFill="#f8f8f8">
+         <font>
+            <Font name="System Bold" size="53.0" />
+         </font>
+      </Label>
+   </children>
 </AnchorPane>

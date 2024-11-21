@@ -4,8 +4,10 @@ module edu.home.estate {
     requires lombok;
     requires com.jfoenix;
     requires javafx.controls;
-    requires javafx.base;
     requires java.desktop;
+    requires javafx.media;
+    requires java.mail;
+    requires net.sf.jasperreports.core;
 
     opens edu.home.estate.dto.tm to javafx.base;
     opens edu.home.estate.controller to javafx.fxml;

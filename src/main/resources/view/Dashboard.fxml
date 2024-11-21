@@ -2,6 +2,8 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -9,50 +11,65 @@
 <AnchorPane fx:id="dashbordAnchorPane" prefHeight="672.0" prefWidth="1336.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.home.estate.controller.DashbordController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="650.0" stroke="#00802b" strokeType="INSIDE" width="1336.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00802b" height="672.0" layoutX="-4.0" stroke="#00802b" strokeType="INSIDE" width="190.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00802b" height="88.0" layoutX="185.0" stroke="GREEN" strokeType="INSIDE" width="1191.0" />
-      <Label layoutX="336.0" layoutY="22.0" prefHeight="41.0" prefWidth="331.0" style="-fx-border-color: white; -fx-border-radius: 6px; -fx-label-padding: 5px;" text="Estate Management System" textAlignment="JUSTIFY" textFill="WHITE">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#004d1a" height="672.0" layoutX="-4.0" stroke="#004d1a" strokeType="INSIDE" width="190.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#004d1a" height="88.0" layoutX="185.0" stroke="#004d1a" strokeType="INSIDE" width="1191.0" />
+      <Label layoutX="537.0" layoutY="22.0" prefHeight="41.0" prefWidth="331.0" style="-fx-border-color: white; -fx-border-radius: 6px; -fx-label-padding: 5px;" text="Estate Management System" textAlignment="JUSTIFY" textFill="WHITE">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <JFXButton layoutX="13.0" layoutY="89.0" onAction="#navigateToEstate" prefHeight="41.0" prefWidth="151.0" style="-fx-border-color: white; -fx-border-radius: 5px;" text="Estate" textFill="WHITE">
+      <JFXButton fx:id="btnEstate" layoutX="13.0" layoutY="154.0" onAction="#navigateToEstate" prefHeight="41.0" prefWidth="151.0" style="-fx-border-color: white; -fx-border-radius: 5px;" text="Estate" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
       <AnchorPane fx:id="content" layoutX="183.0" layoutY="88.0" prefHeight="584.0" prefWidth="1191.0" style="-fx-background-color: white;" />
-      <JFXButton layoutX="13.0" layoutY="140.0" onAction="#navigateDivision" prefHeight="41.0" prefWidth="151.0" style="-fx-border-color: white; -fx-border-radius: 5px;" text="Division" textFill="WHITE">
+      <JFXButton fx:id="btnDivision" layoutX="13.0" layoutY="219.0" onAction="#navigateDivision" prefHeight="41.0" prefWidth="151.0" style="-fx-border-color: white; -fx-border-radius: 5px;" text="Division" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="14.0" layoutY="190.0" onAction="#navegateToCategory" prefHeight="41.0" prefWidth="151.0" style="-fx-border-color: white; -fx-border-radius: 5px;" text="Category" textFill="WHITE">
+      <JFXButton fx:id="btnCategory" layoutX="13.0" layoutY="284.0" onAction="#navegateToCategory" prefHeight="41.0" prefWidth="151.0" style="-fx-border-color: white; -fx-border-radius: 5px;" text="Category" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="15.0" layoutY="240.0" onAction="#navegateToLabour" prefHeight="41.0" prefWidth="151.0" style="-fx-border-color: white; -fx-border-radius: 5px;" text="Labour" textFill="WHITE">
+      <JFXButton fx:id="btnLabour" layoutX="12.0" layoutY="350.0" onAction="#navegateToLabour" prefHeight="41.0" prefWidth="151.0" style="-fx-border-color: white; -fx-border-radius: 5px;" text="Labour" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="16.0" layoutY="288.0" onAction="#navegateToAttendance" prefHeight="41.0" prefWidth="151.0" style="-fx-border-color: white; -fx-border-radius: 5px;" text="Attendance" textFill="WHITE">
+      <JFXButton fx:id="btnAttendance" layoutX="13.0" layoutY="414.0" onAction="#navegateToAttendance" prefHeight="41.0" prefWidth="151.0" style="-fx-border-color: white; -fx-border-radius: 5px;" text="Attendance" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="17.0" layoutY="338.0" onAction="#navigateToHavest" prefHeight="41.0" prefWidth="151.0" style="-fx-border-color: white; -fx-border-radius: 5px;" text="Havest" textFill="WHITE">
+      <JFXButton fx:id="btnHarvest" layoutX="13.0" layoutY="480.0" onAction="#navigateToHavest" prefHeight="41.0" prefWidth="151.0" style="-fx-border-color: white; -fx-border-radius: 5px;" text="Havest" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="18.0" layoutY="391.0" onAction="#navigateToAgriculturalImplements" prefHeight="41.0" prefWidth="151.0" style="-fx-border-color: white; -fx-border-radius: 5px;" text="Assets" textFill="WHITE">
+      <JFXButton fx:id="btnAssets" layoutX="15.0" layoutY="543.0" onAction="#navigateToAgriculturalImplements" prefHeight="41.0" prefWidth="151.0" style="-fx-border-color: white; -fx-border-radius: 5px;" text="Assets" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="19.0" layoutY="452.0" onAction="#navegateToExit" prefHeight="41.0" prefWidth="151.0" style="-fx-border-color: white; -fx-border-radius: 5px;" text="Exit" textFill="WHITE">
+      <JFXButton layoutX="16.0" layoutY="605.0" onAction="#navegateToExit" prefHeight="41.0" prefWidth="151.0" style="-fx-border-color: white; -fx-border-radius: 5px;" text="Exit" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </JFXButton>
+      <Label fx:id="lblDateTime" layoutX="1063.0" layoutY="36.0" prefHeight="21.0" prefWidth="286.0" textAlignment="RIGHT" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="81.0" fitWidth="133.0" layoutX="427.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Image/logo.png" />
+         </image>
+      </ImageView>
+      <JFXButton layoutX="11.0" layoutY="90.0" onAction="#navigateToDashbord" prefHeight="41.0" prefWidth="151.0" style="-fx-border-color: white; -fx-border-radius: 5px;" text="Dashboard" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

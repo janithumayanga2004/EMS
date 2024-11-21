@@ -36,6 +36,9 @@ public class CategoryController implements Initializable {
     private JFXButton btnUpdate;
 
     @FXML
+    private JFXButton btnReport;
+
+    @FXML
     private TableColumn<CategoryTM, String> colCategoryId;
 
     @FXML
@@ -76,9 +79,6 @@ public class CategoryController implements Initializable {
 
         String nextCategoryId = categoryModel.getNextCategoryId();
         lblCategoryId.setText(nextCategoryId);
-
-        txtCategoryName.setText("");
-        txtDescription.setText("");
 
         btnSave.setDisable(false);
 
@@ -260,6 +260,11 @@ public class CategoryController implements Initializable {
     @FXML
     void clearName(MouseEvent event) {
         txtCategoryName.clear();
+
+    }
+
+    @FXML
+    void btnGenerateReport(MouseEvent event) {
 
     }
 

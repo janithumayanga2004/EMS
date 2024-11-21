@@ -15,10 +15,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
@@ -28,6 +25,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class HavestController implements Initializable {
@@ -57,13 +55,13 @@ public class HavestController implements Initializable {
     private TableColumn<HavestTM, Date> colDate;
 
     @FXML
-    private TableColumn<HavestTM, Integer> colHavestId;
+    private TableColumn<HavestTM, String> colHavestId;
 
     @FXML
     private TableColumn<HavestTM, String> colLabourId;
 
     @FXML
-    private TableColumn<HavestTM, Integer> colQuantity;
+    private TableColumn<HavestTM, String> colQuantity;
 
     @FXML
     private Label lblCategoryName;
@@ -115,6 +113,9 @@ public class HavestController implements Initializable {
 
     private void refreshPage() throws Exception {
         refreshTable();
+
+        String nextedId = havestModel.getNextHarvestId();
+        lblHavestId.setText(nextedId);
 
         loadLabourId();
         loadCategoryId();
@@ -170,16 +171,25 @@ public class HavestController implements Initializable {
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) throws Exception {
-        int harvestId = Integer.parseInt(lblHavestId.getText());
+        String harvestId = lblHavestId.getText();
 
-        boolean isDelete = havestModel.deleteHavest(harvestId);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+                "Are you sure you want to delete this Harvest?",
+                ButtonType.YES, ButtonType.NO);
 
-        if (isDelete) {
-            System.out.println("delete harvest");
-            refreshPage();
+        Optional<ButtonType> buttonType = alert.showAndWait();
 
-        }else{
-            System.out.println("not delete harvest");
+        if (buttonType.isPresent() && buttonType.get() == ButtonType.YES) {
+            boolean isDelete = havestModel.deleteHavest(harvestId);
+
+            if (isDelete) {
+                new Alert(Alert.AlertType.INFORMATION, "Harvest Delete..!").show();
+                refreshPage();
+
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Failed to Delete Harvest...!").show();
+            }
+
         }
 
     }
@@ -192,31 +202,7 @@ public class HavestController implements Initializable {
 
     @FXML
     void btnSaveOnAction(ActionEvent event) throws Exception {
-        String quantity = txtQuantity.getText();
-        String date = txtDate.getText();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date dateAttendance = formatter.parse(date);
-        String labourId = cmbLabourId.getSelectionModel().getSelectedItem();
-        String categoryId = cmbCategoryId.getSelectionModel().getSelectedItem();
-
-        HavestDto havestDto = new HavestDto(quantity,dateAttendance,labourId,categoryId);
-
-        boolean isSaved = havestModel.saveHavest(havestDto);
-
-        if (isSaved) {
-            System.out.println("Harvest saved");
-            refreshPage();
-
-        }else{
-            System.out.println("Harvest not saved");
-        }
-
-    }
-
-    @FXML
-    void btnUpdateOnAction(ActionEvent event) throws Exception {
-        System.out.println(lblHavestId.getText());
-        int id =  Integer.parseInt(lblHavestId.getText());
+        String id = lblHavestId.getText();
         String quantity = txtQuantity.getText();
         String date = txtDate.getText();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -226,14 +212,60 @@ public class HavestController implements Initializable {
 
         HavestDto havestDto = new HavestDto(id,quantity,dateAttendance,labourId,categoryId);
 
-        boolean isUpdated = havestModel.updateHavest(havestDto);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+                "Are you sure you want to save this Harvest?",
+                ButtonType.YES, ButtonType.NO);
 
-        if (isUpdated) {
-            System.out.println("Harvest updated");
-            refreshPage();
+        Optional<ButtonType> buttonType = alert.showAndWait();
 
-        }else{
-            System.out.println("Harvest not updated");
+        if (buttonType.isPresent() && buttonType.get() == ButtonType.YES) {
+
+            boolean isSaved = havestModel.saveHavest(havestDto);
+
+            if (isSaved) {
+                new Alert(Alert.AlertType.INFORMATION, "Harvest Saved...!").show();
+                refreshPage();
+
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Failed to save Harvest...!").show();
+            }
+
+        }
+
+    }
+
+    @FXML
+    void btnUpdateOnAction(ActionEvent event) throws Exception {
+        System.out.println(lblHavestId.getText());
+        String id =  lblHavestId.getText();
+        String quantity = txtQuantity.getText();
+        String date = txtDate.getText();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date dateAttendance = formatter.parse(date);
+        String labourId = cmbLabourId.getSelectionModel().getSelectedItem();
+        String categoryId = cmbCategoryId.getSelectionModel().getSelectedItem();
+
+        HavestDto havestDto = new HavestDto(id,quantity,dateAttendance,labourId,categoryId);
+
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+                "Are you sure you want to update this Harvest?",
+                ButtonType.YES, ButtonType.NO);
+
+        Optional<ButtonType> buttonType = alert.showAndWait();
+
+        if (buttonType.isPresent() && buttonType.get() == ButtonType.YES) {
+
+            boolean isUpdated = havestModel.updateHavest(havestDto);
+
+            if (isUpdated) {
+                new Alert(Alert.AlertType.INFORMATION, "Harvest Saved...!").show();
+                refreshPage();
+
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Failed to update Harvest...!").show();
+            }
+
         }
 
     }
@@ -262,20 +294,24 @@ public class HavestController implements Initializable {
     }
 
     @FXML
-    void tblClicked(MouseEvent event) {
+
+    private void tblClicked(MouseEvent event) {
         HavestTM selectedHarvestTm = tblHavest.getSelectionModel().getSelectedItem();
+
         if (selectedHarvestTm != null) {
+
             lblHavestId.setText(String.valueOf(selectedHarvestTm.getId()));
-            lblLabourName.setText(String.valueOf(selectedHarvestTm.getId()));
             txtQuantity.setText(selectedHarvestTm.getQuantity());
             txtDate.setText(String.valueOf(selectedHarvestTm.getDate()));
+            cmbLabourId.getSelectionModel().clearSelection();
+            cmbLabourId.getSelectionModel().select(selectedHarvestTm.getLabour_id().toString());
+            cmbCategoryId.getSelectionModel().clearSelection();
+            cmbCategoryId.getSelectionModel().select(selectedHarvestTm.getCategory_id().toString());
 
             btnSave.setDisable(true);
             btnDelete.setDisable(false);
             btnUpdate.setDisable(false);
         }
-
-
     }
 
 }

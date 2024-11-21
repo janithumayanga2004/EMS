@@ -12,7 +12,7 @@ import lombok.*;
 @ToString
 
 public class AttendanceTM {
-    private int id;
+    private String id;
     private String attendance;
     private Date date;
     private Time time;
